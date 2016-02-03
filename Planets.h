@@ -11,19 +11,29 @@
 class Planet
 {
 public:
-	Planet(float, float, glm::vec3, glm::vec4, glm::mat4, Planet);
+	Planet(float, float, glm::vec3, glm::vec4, glm::mat4, glm::vec3, int);
 	Planet();
 	void Draw();
-	void Update();
+	void Update(float);
 	glm::vec3 getPos()
 	{
 		return m_Pos;
 	}
+
+	glm::vec3 getParentPos()
+	{
+		return parentPos;
+	}
+
 private:
 	float m_Speed;
 	float m_Size;
+	int numMoons;
+	float m_AngleOfOrbit = 1.0f;
+
 	glm::vec3 m_Pos;
 	glm::vec4 m_Color;
 	glm::mat4 m_Model;
-	Planet m_Children();
+
+	glm::vec3 parentPos;
 };

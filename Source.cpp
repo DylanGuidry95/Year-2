@@ -4,7 +4,8 @@
 int main()
 {
 	Application *theApp = new Application();
-	
+
+
 	if(theApp->startup() == true) 
 	{
 		while (theApp->update() == true)

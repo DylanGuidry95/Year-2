@@ -6,6 +6,7 @@ Application::Application()
 	m_y = 2;
 	m_view = glm::lookAt(vec3(10, 10, 10), vec3(0), vec3(0, 1, 0));
 	m_projection = glm::perspective(glm::pi<float>()*0.25f, 16 / 9.f, 0.1f, 1000.f);
+	System = SolarSystem(4, 0, 0);
 }
 
 int Application::startup()
@@ -40,23 +41,34 @@ int Application::update()
 {
 	Gizmos::create();
 
+
 	while (glfwWindowShouldClose(window) == false && glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS)
 	{
 		// our game logic and update code goes here!
 		// so does our render code!
+
+
+
 		glClearColor(0.25f, 0.25f, 0.25f, 1);
 		glEnable(GL_DEPTH_TEST);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//GL_COLOR_BUFFER_BIT tells OpenGL to wipe the back-buffer colors
 		//GL_DEPTH_BUFFER_BIT clear the distance to the closest pixel. We do this that openGL loads are new images from frame to fram
+
+		System.Movement(dt);
+
 		return 1;
 	}
-	return 0;
 
+	return 0;
 }
 
 void Application::draw()
 {
+	currentTime = glfwGetTime();
+	dt = currentTime - totalTime;
+	totalTime = currentTime;
+
 	Gizmos::clear();
 	Gizmos::addTransform(glm::mat4(1));
 
@@ -73,10 +85,10 @@ void Application::draw()
 						vec3(-10, 0, -10 + i), 
 						i == 10 ? white : black);
 	}
-
 	
 
-	
+	System.CreateSystem();
+
 	Gizmos::draw(m_projection  * m_view);
 
 	glfwSwapBuffers(window);

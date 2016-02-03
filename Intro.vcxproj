@@ -73,6 +73,7 @@
     <ClCompile Include="downloads\gl_core_4_4.c" />
     <ClCompile Include="MyApplication.cpp" />
     <ClCompile Include="Planets.cpp" />
+    <ClCompile Include="SolarSystem.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +82,7 @@
     <ClInclude Include="MyApplication.h" />
     <ClInclude Include="Planets.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SolarSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Intro.rc" />
